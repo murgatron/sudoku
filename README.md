@@ -6,7 +6,7 @@ Sudoku solvers in various languages.
 a fun way to learn a new language. 
 
 languages implemented
-- nodejs (javascript) 
+- nodejs (typescript) 
 
 languages todo
 - python
