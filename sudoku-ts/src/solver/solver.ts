@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-useless-constructor */
 import IMatrix from '../interfaces/IMatrix';
 import logger from '../logger';
@@ -29,7 +30,13 @@ export default class Solver {
     return new Solver(matrix);
   }
 
-  public solve(): IMatrix {
+  public solve(recurseMatrix: IMatrix = this.matrix): IMatrix {
+    for (const row of recurseMatrix.rows) {
+      for (const cell of row.cells) {
+        logger.info(`inspecting cell [${cell.column}, ${cell.row}]`);
+      }
+    }
+
     return this.matrix;
   }
 }
