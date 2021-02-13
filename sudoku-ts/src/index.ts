@@ -45,7 +45,7 @@ function main() {
 
   const solver = Solver.create(JSON.parse(loadedPuzzle));
 
-  //solver.solve();
+  solver.solve();
 }
 
 main();

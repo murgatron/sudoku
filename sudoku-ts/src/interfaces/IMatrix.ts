@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import ICell from './ICell';
 import IRow from './IRow';
 
 export default interface IMatrix {
@@ -11,6 +12,10 @@ export default interface IMatrix {
   getColumnValues(column: number): number[];
 
   getQuadrantValues(quad: number): number[];
+
+  resetLastIndicesBetween(startPair: number[], endPair: number[]): void;
+
+  determineLastSolvedCell(currentCell: ICell): ICell;
 
   // eslint-disable-next-line semi
 }

@@ -18,7 +18,6 @@ const quadrant = (dimension: number, row: number, col: number): number => {
   }
   const colQuad = col / divisor.width;
   const rowQuad = row / divisor.height;
-
   return Math.floor(colQuad) + ((divisor.height * Math.floor(rowQuad)));
 }
 
@@ -39,7 +38,8 @@ export default function toMatrix(json: number[][]): IMatrix {
         cellIndex,
         quadrant(dimension, rowIndex, cellIndex),
         cell,
-        cell > 0
+        cell > 0,
+        0
       );
       realRow.addCell(realCell);
     }

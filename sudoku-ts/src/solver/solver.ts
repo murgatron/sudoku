@@ -1,5 +1,3 @@
-import { exitOnError } from 'winston';
-import { ConsoleTransportOptions } from 'winston/lib/winston/transports';
 import ICell from '../interfaces/ICell';
 import IMatrix from '../interfaces/IMatrix';
 import logger from '../logger';
@@ -45,17 +43,19 @@ export default class Solver {
         }
         if (cell.value === 0) {
           logger.info(`inspecting cell [${cell.row}, ${cell.column}]`);
-          const validValue = this.pickValidValue(cell, recurseMatrix, backtracking);
+          const { validValue, index } = this.pickValidValue(cell, recurseMatrix, cell.lastIndex);
           if (validValue === undefined) {
             console.log(`Valid value ${validValue}!`);
-            const { row, column } = this.determineLastSolvedCell(cell, recurseMatrix);
+            const { row, column } = recurseMatrix.determineLastSolvedCell(cell);
             console.log(`Need to backtrack to [${row}, ${column}]`);
+            recurseMatrix.resetLastIndicesBetween([cell.row, cell.column], [row, column]);
             recurseMatrix.rows[row].cells[column].value = 0;
-            const tracking = backtracking ? backtracking + 1 : 1;
-            this.solve(recurseMatrix, tracking);
+            const tracking = backtracking ? backtracking : 1;
+            return this.solve(recurseMatrix, tracking);
           } else {
             cell.value = validValue;
-            this.solve(recurseMatrix);
+            cell.lastIndex = index;
+            return this.solve(recurseMatrix);
           }
         }
         if (cell.column === maxIndex && cell.row === maxIndex && cell.value !== 0) {
@@ -71,41 +71,12 @@ export default class Solver {
   }
 
   /**
-   * In a backtracking case, scroll backwards through the matrix until
-   * a non-puzzle cell can be unset. 
-   * @param cell 
-   * @param matrix 
-   */
-  private determineLastSolvedCell(cell: ICell, matrix: IMatrix): ICell {
-    let rowOfLastCell: number;
-    let columnOfLastCell: number;
-
-    if (cell.column === 0) {
-      rowOfLastCell = cell.row - 1;
-      columnOfLastCell = matrix.rows.length - 1;
-    } else {
-      rowOfLastCell = cell.row;
-      columnOfLastCell = cell.column - 1;
-    }
-    const previousCell = matrix.rows[rowOfLastCell].cells[columnOfLastCell];
-    console.log(`Determined a previous cell of [${previousCell.row}, ${previousCell.column}]`);
-
-    // don't unset a puzzle value if this is one 
-    if (previousCell.isPuzzleValue) {
-      console.log(`[${previousCell.row}, ${previousCell.column}] is a puzzle value. Moving back one more.`)
-      return this.determineLastSolvedCell(previousCell, matrix);
-    }
-    // otherwise this is where we want to backtrack
-    return previousCell;
-  }
-
-  /**
    * Given a matrix and a cell, pick a valid value for that cell
    * @param cell
    * @param matrix
    */
-  private pickValidValue(cell: ICell, matrix: IMatrix, index = 0): number {
-    console.log(`picking values. are we backtracking? ${index}`);
+  private pickValidValue(cell: ICell, matrix: IMatrix, index = 0): { validValue: number; index: number; } {
+    console.log(`picking values for [${cell.row}, ${cell.column}]. are we backtracking? ${index}`);
     const possibleValues: number[] = [];
 
     const rowValues = matrix.getRowValues(cell.row);
@@ -113,15 +84,19 @@ export default class Solver {
     const quadrantValues = matrix.getQuadrantValues(cell.quadrant);
 
     this.values.forEach((value: number) => {
-      console.log(`Index for value ${value}: [${rowValues.indexOf(value)}, ${columnValues.indexOf(value)}, ${quadrantValues.indexOf(value)}]`);
+      // console.log(`Index for value ${value}: [${rowValues.indexOf(value)}, ${columnValues.indexOf(value)}, ${quadrantValues.indexOf(value)}]`);
       if (rowValues.indexOf(value) < 0
         && columnValues.indexOf(value) < 0
         && quadrantValues.indexOf(value) < 0) {
-        console.log(`Adding value ${value} to possible values`);
+        console.log(`Adding value [${value}] to possible values`);
         possibleValues.push(value);
       }
     });
-    logger.info(`Possible values for [${cell.row}, ${cell.column}]: ${possibleValues.toString()}. Picking index ${index}`);
-    return possibleValues[index];
+    logger.info(`Possible values for [${cell.row}, ${cell.column}]: ${possibleValues.toString()}.`);
+    console.log(`Picking index [${cell.lastIndex}] - Value ${possibleValues[cell.lastIndex]}`);
+    return {
+      validValue: possibleValues[cell.lastIndex],
+      index: cell.lastIndex + 1
+    };
   }
 }
