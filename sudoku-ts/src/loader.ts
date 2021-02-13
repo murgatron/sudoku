@@ -17,21 +17,23 @@ export default function loadPuzzle(args: ISolverArgs): string {
     return fs.readFileSync(FOUR_PATH).toString();
   }
   if (nine) {
-    return NINE_PATH;
+    return fs.readFileSync(NINE_PATH).toString();
   }
   if (twelve) {
-    return TWELVE_PATH;
+    return fs.readFileSync(TWELVE_PATH).toString();
   }
   if (sixteen) {
-    return SIXTEEN_PATH;
+    return fs.readFileSync(SIXTEEN_PATH).toString();
   }
   if (puzzle) {
     const filepath = path.resolve(__dirname, puzzle);
     logger.info(`Loading puzzle from ${filepath}`);
-    throw new Error('Not implemented: puzzle path resolution');
+    return fs.readFileSync(filepath).toString();
   }
   if (random) {
     throw new Error('Not implemented: random matrix generation');
   }
-  return 'Null';
+
+  // TODO: could probably do something better here
+  throw new Error('No argument provided');
 }

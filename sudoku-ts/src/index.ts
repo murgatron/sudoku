@@ -1,23 +1,6 @@
 import { ArgumentParser } from 'argparse';
-import Cell from './solver/cell';
 import loadPuzzle from './loader';
 import Solver from './solver/solver';
-
-// eslint-disable-next-line no-unused-vars
-const matrix = [
-  [new Cell(0, 0, 0, 1), new Cell(0, 1, 0, 0), new Cell(0, 2, 1, 2), new Cell(0, 3, 1, 0)],
-  [new Cell(1, 0, 0, 0), new Cell(1, 1, 0, 0), new Cell(1, 2, 1, 0), new Cell(1, 3, 1, 0)],
-  [new Cell(2, 0, 2, 0), new Cell(2, 1, 2, 0), new Cell(2, 2, 3, 0), new Cell(2, 3, 3, 0)],
-  [new Cell(3, 0, 2, 0), new Cell(3, 1, 2, 0), new Cell(3, 2, 3, 0), new Cell(3, 3, 3, 1)],
-];
-
-// from the internet
-// const matrix = [
-//     [ new Cell(0,0,0, null), new Cell(0,1,0, null), new Cell(0,2,1, 1), new Cell(0,3,1, null) ],
-//     [ new Cell(1,0,0, 4), new Cell(1,1,0, null), new Cell(1,2,1, null), new Cell(1,3,1, null) ],
-//     [ new Cell(2,0,2, null), new Cell(2,1,2, null), new Cell(2,2,3, null), new Cell(2,3,3, 2) ],
-//     [ new Cell(3,0,2, null), new Cell(3,1,2, 3), new Cell(3,2,3, null), new Cell(3,3,3, null) ]
-// ]
 
 /**
  * startup
@@ -31,6 +14,21 @@ function main() {
   group.add_argument('-f', '--four',
     {
       help: 'solve the default 4x4 puzzle ',
+      action: 'store_true',
+    });
+  group.add_argument('-n', '--nine',
+    {
+      help: 'solve the default 9x9 puzzle ',
+      action: 'store_true',
+    });
+  group.add_argument('-t', '--twelve',
+    {
+      help: 'solve the default 12x12 puzzle ',
+      action: 'store_true',
+    });
+  group.add_argument('-s', '--sixteen',
+    {
+      help: 'solve the default 16x16 puzzle ',
       action: 'store_true',
     });
   group.add_argument('-p', '--puzzle',

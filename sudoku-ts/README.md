@@ -4,15 +4,33 @@ a typescript sudoku solver
 
 # prereqs
 
-- node js installed. (use nvm for version management)
+- use nvm for node version management
+- install nodejs lts
 
 # setup
 
-clone the repo.
-
-```npm install```
+first, clone the repo. then,
+ 
+```
+npm install
+```
 
 # run
 
-```npm run solve``
+```sh
+npm run solve
+```
+
+for available commands, run 
+
+```sh
+npm run solve -- -h
+```
+
+# test
+
+```sh
+npm run test
+```
+
 
