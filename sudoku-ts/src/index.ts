@@ -38,6 +38,7 @@ function main() {
   group.add_argument('-r', '--random',
     {
       help: 'generate a random puzzle, then solve it.',
+      action: 'store_true'
     });
 
   const loadedPuzzle = loadPuzzle(parser.parse_args());

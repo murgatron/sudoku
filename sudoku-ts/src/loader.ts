@@ -6,7 +6,6 @@ import {
 import ISolverArgs from './interfaces/ISolverArgs';
 import logger from './logger';
 
-// eslint-disable-next-line consistent-return
 export default function loadPuzzle(args: ISolverArgs): string {
   logger.info(args);
   const {

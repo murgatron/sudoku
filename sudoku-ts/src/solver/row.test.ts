@@ -1,7 +1,6 @@
-/* eslint-disable no-undef */
 describe('Row', () => {
   it('can be created', () => {
-
+    // TODO
   });
   it('can add cells', () => {
     // TODO

@@ -31,6 +31,7 @@
   "dependencies": {
     "argparse": "^2.0.1",
     "eslint-config-airbnb": "^18.2.1",
+    "typescript-eslint": "0.0.1-alpha.0",
     "winston": "^3.3.3"
   }
 }

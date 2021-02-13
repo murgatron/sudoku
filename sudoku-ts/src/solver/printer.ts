@@ -35,7 +35,7 @@ function printNull(value: number) {
  * Print the matrix nicely. Dynamic based on dimension.
  */
 // TODO: why not a toString on the class? What the hell was i thinking
-export default function printMatrix(matrix: Cell[][]) {
+export default function printMatrix(matrix: Cell[][]): void {
   // for columns
   const _colString = buildColumnString();
   logger.info(_colString);

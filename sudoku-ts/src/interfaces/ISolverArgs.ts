@@ -1,9 +1,9 @@
 export default interface ISolverArgs {
   puzzle: string;
-  random: any;
-  four: any;
-  nine: any;
-  twelve: any;
-  sixteen: any;
+  random: boolean;
+  four: boolean;
+  nine: boolean;
+  twelve: boolean;
+  sixteen: boolean;
   // eslint-disable-next-line semi
 }
