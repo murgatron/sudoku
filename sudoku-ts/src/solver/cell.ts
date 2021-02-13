@@ -6,5 +6,6 @@ export default class Cell implements ICell {
     public readonly column: number,
     public readonly quadrant: number,
     public value: number,
+    public readonly isPuzzleValue: boolean
   ) { }
 }

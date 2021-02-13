@@ -3,5 +3,6 @@ export default interface ICell {
   row: number;
   quadrant: number;
   value: number;
+  isPuzzleValue: boolean;
   // eslint-disable-next-line semi
 }

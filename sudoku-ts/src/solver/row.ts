@@ -13,7 +13,11 @@ export default class Row implements IRow {
     this.cells = this.cells.concat(newCell);
   }
 
+/**
+ * an asterisk (*) denotes a preset puzzle value.
+ * numbers in parens represent the quadrant value.
+ */
   toString(): string {
-    return `[ ${this.cells.map((cell) => (cell.value ?? '-').toString()).join(',')} ]`;
+    return `[ ${this.cells.map((cell) => (` ${cell.value}${cell.isPuzzleValue ? '*' : ' '} (${cell.quadrant})`)).join(',')} ]`;
   }
 }
