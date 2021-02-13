@@ -19,6 +19,14 @@
             2,
             "never"
         ],
-        "import/no-unresolved": "off"
+        "import/no-unresolved": "off",
+        "semi": [
+            "error",
+            "always",
+            {
+                "omitLastInOneLineBlock": true
+            }
+        ],
+        "no-useless-constructor": "off"
     }
 }

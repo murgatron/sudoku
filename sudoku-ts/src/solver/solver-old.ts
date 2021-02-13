@@ -1,10 +1,12 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
-import Cell from './cell';
-import { VALUES, DIMENSION } from './constants';
+import Cell from '../solver/cell';
 import Matrix from './matrix';
-import printNice from './print';
+import printNice from './printer';
 import Row from './row';
+
+const DIMENSION = 4;
+const VALUES = [1, 2, 3, 4];
 
 /**
  * Calculate the quadrant for the row and column.

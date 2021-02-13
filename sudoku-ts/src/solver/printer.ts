@@ -1,6 +1,10 @@
+// TODO this file sucks delete it
+
 /* eslint-disable no-underscore-dangle */
 import Cell from './cell';
-import { DIMENSION } from './constants';
+import logger from '../logger';
+
+const DIMENSION = 4;
 
 /**
  * Build the column string based on dimension.
@@ -30,10 +34,11 @@ function printNull(value: number) {
 /**
  * Print the matrix nicely. Dynamic based on dimension.
  */
-export default function printNice(matrix: Cell[][]) {
+// TODO: why not a toString on the class? What the hell was i thinking
+export default function printMatrix(matrix: Cell[][]) {
   // for columns
   const _colString = buildColumnString();
-  console.log(_colString);
+  logger.info(_colString);
 
   // now rows
   // eslint-disable-next-line no-shadow
@@ -45,11 +50,11 @@ export default function printNice(matrix: Cell[][]) {
         _rowString = _rowString.concat('| ');
       }
     });
-    console.log(`${_rowString}] `);
+    logger.info(`${_rowString}] `);
 
     // account for vertical delim
     if (rowIndex === (matrix.length / 2 - 1)) {
-      console.log('   -------------');
+      logger.info('   -------------');
     }
   });
 }
