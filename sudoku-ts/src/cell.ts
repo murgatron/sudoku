@@ -1,13 +1,16 @@
 export default class Cell {
-    public row;
-    public column;
-    public quadrant;
-    public value;
+  public row: number;
 
-    constructor(_row, _column, _quadrant, _value){
-        this.row = _row;
-        this.column = _column;
-        this.quadrant = _quadrant;
-        this.value = _value;
-    }
+  public column: number;
+
+  public quadrant: number;
+
+  public value: number;
+
+  constructor(_row: number, _column: number, _quadrant: number, _value: number) {
+    this.row = _row;
+    this.column = _column;
+    this.quadrant = _quadrant;
+    this.value = _value;
+  }
 }
