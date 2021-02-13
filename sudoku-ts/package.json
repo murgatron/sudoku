@@ -1,14 +1,13 @@
 {
-  "name": "sudoku-js",
+  "name": "sudoku-ts",
   "version": "1.0.0",
   "description": "typescript sudoku solver",
   "main": "index.js",
   "scripts": {
-    "jest": "./node_modules/jest/bin/jest.js",
-    "eslint": "./node_modules/eslint/bin/eslint.js",
     "test": "npm run jest",
     "lint": "npm run eslint -- ./src/**/*.ts --ext .ts --fix ",
-    "build": "npm run tsc"
+    "build": "tsc --project tsconfig.json",
+    "solve": "npm run build && node index.js"
   },
   "author": "mmeyer",
   "license": "ISC",

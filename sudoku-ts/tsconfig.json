@@ -1,16 +1,20 @@
 {
-    "compilerOptions": {
-      "target": "ES2015",
-      "module": "commonjs",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
-    },
-    "include": [
-      "src/*.ts",
-      "src/**/*.ts",
-      "src/**/*.json"
-    ],
-    "exclude": ["node_modules", "src/**/*.test.ts"]
-  }
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./build"
+  },
+  "include": [
+    "src/*.ts",
+    "src/**/*.ts",
+    "src/**/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/*.test.ts"
+  ]
+}
