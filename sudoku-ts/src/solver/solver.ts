@@ -44,14 +44,14 @@ export default class Solver {
         if (cell.value === 0) {
           logger.info(`inspecting cell [${cell.row}, ${cell.column}]`);
           const { validValue, index } = this.pickValidValue(cell, recurseMatrix, cell.lastIndex);
-          if (validValue === undefined) {
+          if (validValue === undefined) { // TODO: memoization
             console.log(`Valid value ${validValue}!`);
             const { row, column } = recurseMatrix.determineLastSolvedCell(cell);
             console.log(`Need to backtrack to [${row}, ${column}]`);
             recurseMatrix.resetLastIndicesBetween([cell.row, cell.column], [row, column]);
             recurseMatrix.rows[row].cells[column].value = 0;
             const tracking = backtracking ? backtracking : 1;
-            return this.solve(recurseMatrix, tracking);
+            return this.solve(recurseMatrix, tracking); 
           } else {
             cell.value = validValue;
             cell.lastIndex = index;
