@@ -3,6 +3,9 @@ ThisBuild / version          := "0.0.1"
 
 lazy val sample = (project in file("."))
   .settings(
-    name := "Sample Project",
-    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.2" % Test,
+    name := "sudoku-sbt",
+    libraryDependencies ++= Seq(
+      "org.scalatest" %% "scalatest" % "3.2.2" % Test, 
+      "com.lihaoyi" %% "os-lib" % "0.7.3"
+    )
   )
